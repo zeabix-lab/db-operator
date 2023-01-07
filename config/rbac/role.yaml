@@ -1,0 +1,59 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - db.zeabix.com
+  resources:
+  - databases
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - db.zeabix.com
+  resources:
+  - databases/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - db.zeabix.com
+  resources:
+  - databases/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - db.zeabix.com
+  resources:
+  - mysqlservers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - db.zeabix.com
+  resources:
+  - mysqlservers/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - db.zeabix.com
+  resources:
+  - mysqlservers/status
+  verbs:
+  - get
+  - patch
+  - update

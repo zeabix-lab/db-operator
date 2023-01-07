@@ -1,0 +1,58 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.10.0
+  creationTimestamp: null
+  name: mysqlservers.db.zeabix.com
+spec:
+  group: db.zeabix.com
+  names:
+    kind: MySQLServer
+    listKind: MySQLServerList
+    plural: mysqlservers
+    singular: mysqlserver
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: MySQLServer is the Schema for the mysqlservers API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: MySQLServerSpec defines the desired state of MySQLServer
+            properties:
+              host:
+                description: MySQLServer host
+                type: string
+              secretRef:
+                description: SecretRef that contain user and credential that has sufficient
+                  privileges to create database, user and grant permission to created
+                  user
+                type: string
+            type: object
+          status:
+            description: MySQLServerStatus defines the observed state of MySQLServer
+            properties:
+              health:
+                description: Health of the MySQLServer instance
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
